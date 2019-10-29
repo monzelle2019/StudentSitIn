@@ -1,7 +1,7 @@
 ---
 title: "Student Sit In"
-author: "your name here"
-date: "10/26/2019"
+author: "Glen Abram"
+date: "10/28/2019"
 output: 
   html_document:
     toc: true
@@ -22,7 +22,7 @@ Students at UCD- is there a relation between where one sits and one's major?
 
 <!-- where is the data found?  Is this an experiment or an observational study?  !-->
 
-Data from this study came from... 
+Data from this study came from a study at UC DAVIS among 173 students.
 
 
 
@@ -45,46 +45,44 @@ names(UCDdataframe)
 ```
 ## Methods
 
-<!--  describe analysis methods here 
-what are the variable types, and indicate gaphical, numerical, and inferential methods appropriate
-for this question  !--> 
+Both variables in this analysis are categorical, therefore we utilize bar graphs and tables to manifest the data and char squared test for inference.
 
 
 ## Data summary
 
 **Graphical summary**
-put the graphic description of the data here
 
 ```{r}
+barchartGC(~seat+major, data = UCDdataframe, type = "percent", xlab = "Seating", main = "Seating vs Major")
 
 ```
 
-Explain what the graph shows
-
+The BarChart shows that amongst people whom Majored in Liberal Arts. They are approximately evenly divided on whether they favor front or not. People who are non liberal arts majors tend to be in favor of of the middle.
 
 **Numerical summary**
 put numerical summary here
 
 ```{r}
-
+tab1 = xtabs(formula = ~seat+major, data = UCDdataframe)
+rowPerc(tab1)
 ```
 
-Explain what the numeric summary says
+There's not much difference among seating preferences amongst majors.
 
 ## Inferential Results
 put the inferential test for the the null hypothesis here
 
 ```{r}
-
+chisqtestGC(tab1)
 ```
 
-what is the p-value?
+what is the p-value?0.2173>0.05 suggests that there's no connection among where one chooses to sit and their major.
 
 ## Results and conclusions
 
 <!-- explain-- is there evidence that certain majors tend to sit in particular areas of the class?  Can the results of this test be generalized to all majors in all universities? !-->
 
-explain the result, can the result be generalized?
+The P value for the ChisQ Test is 0.2173>0.05 therefore, we fail to reject the null hypothesis and conclude that we have sufficient evidence to corroborate the contention that one's major and where one chooses to sit is related. It appears very likely that one's choice of seating is not related to one's choice of major.
 
 <!--
 push results to your github account, turn in the URL
